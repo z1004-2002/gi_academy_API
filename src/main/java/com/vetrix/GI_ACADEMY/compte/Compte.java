@@ -27,6 +27,7 @@ public class Compte {
     private String email;
     private String adresse;
     private String password;
+    private UUID niveau;
     private Role role;
 
 

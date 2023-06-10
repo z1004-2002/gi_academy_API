@@ -21,12 +21,23 @@ public class CompteService implements UserDetailsService {
     public Compte createCompte(Compte compte){
         return repository.save(compte);
     }
+
+
     public List<Compte> getAllEnseignant(){
-        return repository.findAll();
+        return repository.findAllByRole(Role.ENSEIGNANT);
     }
-    public Compte getEnseignantById(UUID id){
+    public List<Compte> getAllStudent(){
+        return repository.findAllByRole(Role.ETUDIANT);
+    }
+    public Compte getAdmin(){
+        return repository.findAllByRole(Role.ADMIN).get(0);
+    }
+    public Compte getCompteById(UUID id){
         return repository.findById(id).get();
     }
+
+
+
     public Compte updateUser(UUID id, Compte compte){
         repository.findById(id).map(ens ->{
             ens.setLastName(compte.getLastName());
@@ -34,6 +45,7 @@ public class CompteService implements UserDetailsService {
             ens.setPhone(compte.getPhone());
             ens.setEmail(compte.getEmail());
             ens.setAdresse(compte.getAdresse());
+            ens.setNiveau(compte.getNiveau());
             return repository.save(ens);
         });
         return compte;
