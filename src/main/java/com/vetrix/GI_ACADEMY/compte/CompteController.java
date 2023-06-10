@@ -12,7 +12,6 @@ import java.util.UUID;
 @CrossOrigin("*")
 public class CompteController {
     private final CompteService service;
-
     public CompteController(CompteService service) {
         this.service = service;
     }
